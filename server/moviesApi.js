@@ -1,16 +1,11 @@
 import {Router} from "express";
 
-export function MoviesApi() {
+export function MoviesApi(mongoDatabase) {
     const router = new Router();
-    router.get("/", (req, res) => {
-        const movies = [
-            {
-                title: "Movie 1",
-            },
-            {
-            title: "Movie 2",
-            },
-        ];
+    router.get("/", async (req, res) => {
+        const movies = await mongoDatabase.collection("movies")
+            .find()
+            .toArray();
         res.json(movies);
     });
 
