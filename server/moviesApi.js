@@ -10,6 +10,10 @@ export function MoviesApi(mongoDatabase) {
     });
 
     router.post("/new", (req, res) => {
+        const { title } = req.body;
+        const result = mongoDatabase.collection("movies").insertOne({
+            title,
+        });
         res.sendStatus(500);
     });
     return router;
