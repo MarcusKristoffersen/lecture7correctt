@@ -15,21 +15,34 @@
     "@babel/preset-react": "^7.16.7",
     "jest": "^27.5.1",
     "jest-babel": "^1.0.1",
-    "parcel": "^2.4.0"
+    "parcel": "^2.3.2"
   },
   "dependencies": {
-    "@parcel/transformer-react-refresh-wrap": "^2.4.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "@parcel/transformer-react-refresh-wrap": "^2.3.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.2"
   },
   "babel": {
     "presets": [
       "@babel/preset-react",
-      "@babel/preset-env"
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
     ]
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "collectCoverageFrom": [
+      "/*.jsx",
+      "/*.js",
+      "!dist/",
+      "!coverage/"
+    ]
   }
 }
